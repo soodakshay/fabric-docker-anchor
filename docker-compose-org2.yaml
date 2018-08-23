@@ -35,9 +35,11 @@ networks:
 
 services:
 
-  peer0.org2.example.com: *peer-base
+  peer0.org2.example.com:
+    <<: *peer-base
     container_name: peer0.org2.example.com
-    environment: *peer-env
+    environment:
+      - *peer-env
       - CORE_PEER_ID=peer0.org2.example.com
       - CORE_PEER_ADDRESS=peer0.org2.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:7051
@@ -54,9 +56,11 @@ services:
     networks:
       - byfn
 
-  peer1.org2.example.com: *peer-base
+  peer1.org2.example.com:
+    <<: *peer-base
     container_name: peer1.org2.example.com
-    environment: *peer-env
+    environment:
+      - *peer-env
       - CORE_PEER_ID=peer1.org2.example.com
       - CORE_PEER_ADDRESS=peer1.org2.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:7051
