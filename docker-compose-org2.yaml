@@ -12,7 +12,7 @@ volumes:
 networks:
   byfn:
 
-&peer-base:
+  peer-base: &peer-base
   image: hyperledger/fabric-peer:$IMAGE_TAG
   working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
   command: peer node start
