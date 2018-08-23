@@ -6,27 +6,26 @@
 version: '2'
 
 volumes:
-  peer0.org1.example.com:
-  peer1.org1.example.com:
+  peer0Org1:
+  peer1Org1:
 
 networks:
   byfn:
-
-&peer-base:
-  image: hyperledger/fabric-peer:$IMAGE_TAG
-  working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-  command: peer node start
+    external:
+      name: fabric
 
 
 services:
-  peer0.org1.example.com:
-    <<: *peer-base
-    container_name: peer0.org1.example.com
+  peer0Org1:
+    container_name: peer0Org1
+    image: hyperledger/fabric-peer:$IMAGE_TAG
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: peer node start
     environment:
       - CORE_PEER_ID=peer0.org1.example.com
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer0Org1:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1Org1:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0Org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       # the following setting starts chaincode containers on the same
@@ -46,21 +45,23 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer0.org1.example.com:/var/hyperledger/production
+        - peer0Org1:/var/hyperledger/production
     ports:
       - 7051:7051
       - 7053:7053
     networks:
       - byfn
 
-  peer1.org1.example.com:
-    <<: *peer-base
-    container_name: peer1.org1.example.com
+  peer1Org1:
+    container_name: peer1Org1
+    image: hyperledger/fabric-peer:$IMAGE_TAG
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: peer node start
     environment:
       - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:7051
-      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org1.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer1Org1:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1Org1:7051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0Org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
       # the following setting starts chaincode containers on the same
@@ -80,7 +81,7 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer1.org1.example.com:/var/hyperledger/production
+        - peer1Org1:/var/hyperledger/production
     ports:
       - 8051:7051
       - 8053:7053
@@ -99,7 +100,7 @@ services:
       #- CORE_LOGGING_LEVEL=DEBUG
       - CORE_LOGGING_LEVEL=INFO
       - CORE_PEER_ID=cli
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer0Org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
       - CORE_PEER_TLS_ENABLED=true
       - CORE_PEER_TLS_CERT_FILE=/opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/server.crt
@@ -115,10 +116,10 @@ services:
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     depends_on:
-      - orderer.example.com
-      - peer0.org1.example.com
-      - peer1.org1.example.com
-      - peer0.org2.example.com
-      - peer1.org2.example.com
+      - orderer
+      - peer0Org1
+      - peer1Org1
+      - peer0Org2
+      - peer1Org2
     networks:
       - byfn

@@ -2,14 +2,14 @@
 version: '2'
 
 volumes:
-  orderer.example.com:
+  orderer:
 
 networks:
   byfn:
 
 services:
-  orderer.example.com:
-    container_name: orderer.example.com
+  orderer:
+    container_name: orderer
     image: hyperledger/fabric-orderer:$IMAGE_TAG
     environment:
       - ORDERER_GENERAL_LOGLEVEL=INFO
@@ -29,7 +29,7 @@ services:
     - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
     - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/msp:/var/hyperledger/orderer/msp
     - ../crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/:/var/hyperledger/orderer/tls
-    - orderer.example.com:/var/hyperledger/production/orderer
+    - orderer:/var/hyperledger/production/orderer
     ports:
       - 7050:7050
     networks:
