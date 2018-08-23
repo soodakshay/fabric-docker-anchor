@@ -11,6 +11,8 @@ volumes:
 
 networks:
   byfn:
+    external:
+      name: fabric
 
 
 services:
