@@ -17,7 +17,7 @@ networks:
 
 services:
 
-  peer0.org2.example.com:
+  peer0Org2:
     image: hyperledger/fabric-peer:$IMAGE_TAG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -52,7 +52,7 @@ services:
     networks:
       - byfn
 
-  peer1.org2.example.com:
+  peer1Org2:
     image: hyperledger/fabric-peer:$IMAGE_TAG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
