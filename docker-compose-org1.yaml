@@ -17,7 +17,6 @@ networks:
 
 services:
   peer0Org1:
-    container_name: peer0Org1
     image: hyperledger/fabric-peer:$IMAGE_TAG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -53,7 +52,6 @@ services:
       - byfn
 
   peer1Org1:
-    container_name: peer1Org1
     image: hyperledger/fabric-peer:$IMAGE_TAG
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
@@ -90,7 +88,6 @@ services:
 
 
   cli:
-    container_name: cli
     image: hyperledger/fabric-tools:$IMAGE_TAG
     tty: true
     stdin_open: true
