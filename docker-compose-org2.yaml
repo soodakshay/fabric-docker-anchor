@@ -48,6 +48,8 @@ services:
     ports:
       - 9051:7051
       - 9053:7053
+    extra_hosts:
+      - peer0Org2:127.0.0.1
     networks:
       - byfn
 
