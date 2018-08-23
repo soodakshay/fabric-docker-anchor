@@ -12,16 +12,14 @@ volumes:
 networks:
   byfn:
 
-peer-base: &peer-base
-  image: hyperledger/fabric-peer:$IMAGE_TAG
-  working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
-  command: peer node start
 
 services:
 
   peer0.org2.example.com:
-    <<: *peer-base
     container_name: peer0.org2.example.com
+    image: hyperledger/fabric-peer:$IMAGE_TAG
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: peer node start
     environment:
       - CORE_PEER_ID=peer0.org2.example.com
       - CORE_PEER_ADDRESS=peer0.org2.example.com:7051
@@ -54,8 +52,10 @@ services:
       - byfn
 
   peer1.org2.example.com:
-    <<: *peer-base
     container_name: peer1.org2.example.com
+    image: hyperledger/fabric-peer:$IMAGE_TAG
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
+    command: peer node start
     environment:
       - CORE_PEER_ID=peer1.org2.example.com
       - CORE_PEER_ADDRESS=peer1.org2.example.com:7051
