@@ -46,6 +46,7 @@ services:
         - p0:/var/hyperledger/production
     ports:
       - 9051:7051
+      - 9052:7052
       - 9053:7053
     networks:
       - byfn
