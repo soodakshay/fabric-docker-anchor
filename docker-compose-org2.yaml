@@ -5,9 +5,7 @@
 
 version: '3.4'
 
-volumes:
-  peer0Org2:
-  peer1Org2:
+
 
 networks:
   byfn:
@@ -45,7 +43,6 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer0Org2:/var/hyperledger/production
     ports:
       - 9051:7051
       - 9053:7053
@@ -80,7 +77,6 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer1Org2:/var/hyperledger/production
     ports:
       - 10051:7051
       - 10053:7053

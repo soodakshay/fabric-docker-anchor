@@ -3,11 +3,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-version: '2'
+version: '3.4'
 
-volumes:
-  peer0Org1:
-  peer1Org1:
 
 networks:
   byfn:
@@ -44,7 +41,6 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer0Org1:/var/hyperledger/production
     ports:
       - 7051:7051
       - 7053:7053
@@ -79,7 +75,6 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls:/etc/hyperledger/fabric/tls
-        - peer1Org1:/var/hyperledger/production
     ports:
       - 8051:7051
       - 8053:7053
