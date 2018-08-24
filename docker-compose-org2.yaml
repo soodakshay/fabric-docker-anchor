@@ -90,6 +90,6 @@ services:
     extra_hosts:
       - peer1Org2:127.0.0.1
     networks:
-      byfn
+      byfn:
         aliases:
           - peer1.org2.example.com

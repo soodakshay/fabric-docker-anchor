@@ -50,9 +50,9 @@ services:
     extra_hosts:
       - peer0Org1:127.0.0.1
     networks:
-      - byfn
-          aliases:
-            - peer0.org1.example.com
+      byfn:
+        aliases:
+          - peer0.org1.example.com
 
   peer1Org1:
     image: hyperledger/fabric-peer:latest
@@ -89,9 +89,9 @@ services:
     extra_hosts:
       - peer1Org1:127.0.0.1
     networks:
-      - byfn
-          aliases:
-            - peer1.org1.example.com
+      byfn:
+        aliases:
+          - peer1.org1.example.com
 
 
   cli:

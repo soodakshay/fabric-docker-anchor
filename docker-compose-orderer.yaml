@@ -35,6 +35,6 @@ services:
     extra_hosts:
       - orderer:127.0.0.1
     networks:
-      - byfn
-          aliases:
-            - orderer.example.com
+      byfn:
+        aliases:
+          - orderer.example.com
