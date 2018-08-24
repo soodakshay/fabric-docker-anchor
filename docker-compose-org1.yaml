@@ -8,13 +8,11 @@ version: '3.4'
 
 networks:
   byfn:
-    external:
-      name: fabric
 
 
 services:
   peer0Org1:
-    image: hyperledger/fabric-peer:$IMAGE_TAG
+    image: hyperledger/fabric-peer:latest
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     environment:
@@ -50,7 +48,7 @@ services:
       - byfn
 
   peer1Org1:
-    image: hyperledger/fabric-peer:$IMAGE_TAG
+    image: hyperledger/fabric-peer:latest
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
     command: peer node start
     environment:
@@ -87,7 +85,7 @@ services:
 
 
   cli:
-    image: hyperledger/fabric-tools:$IMAGE_TAG
+    image: hyperledger/fabric-tools:latest
     tty: true
     stdin_open: true
     environment:
