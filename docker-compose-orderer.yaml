@@ -4,8 +4,6 @@ version: '3.4'
 
 networks:
   byfn:
-    external:
-      name: fabric
 
 volumes:
   orderer:
