@@ -53,7 +53,7 @@ services:
     networks:
       byfn:
         aliases:
-          - peer0.org2.example
+          - peer0.org2.example.com
 
   peer1Org2:
     image: hyperledger/fabric-peer:latest
