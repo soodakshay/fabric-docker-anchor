@@ -36,3 +36,5 @@ services:
       - orderer:127.0.0.1
     networks:
       - byfn
+          aliases:
+            - orderer.example.com
