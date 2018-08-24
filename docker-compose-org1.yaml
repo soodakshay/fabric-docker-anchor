@@ -21,7 +21,7 @@ services:
     command: peer node start
     environment:
       - CORE_PEER_ID=peer0.org1.example.com
-      - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer0Org1:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer1Org1:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0Org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
@@ -58,7 +58,7 @@ services:
     command: peer node start
     environment:
       - CORE_PEER_ID=peer1.org1.example.com
-      - CORE_PEER_ADDRESS=peer1.org1.example.com:7051
+      - CORE_PEER_ADDRESS=peer1Org1:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1Org1:7051
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0Org1:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
